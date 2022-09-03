@@ -17,7 +17,7 @@ const displayCategory = (categorys) => {
   
     const catogoryDiv = document.createElement('div');
     catogoryDiv.innerHTML = `
-        <h5 class="category py-2" id="news-cat" onclick="newsLoad(${category.category_id});">${category.category_name}</h5>
+        <h5 class="category py-3" id="news-cat" onclick="newsLoad(${category.category_id});">${category.category_name}</h5>
         `
     categoryContainer.appendChild(catogoryDiv)
   })
@@ -38,10 +38,16 @@ const newsLoad = (id) =>{
 const newsDisplay = (categoryNews) => {
   console.log(categoryNews)
   const noFound=document.getElementById('no-found-message');
-  if(categoryNews.length===0){
+const newArray=[];
+for(const newscat of categoryNews){
 
-    noFound.classList.remove('d-none')
-  }
+  console.log(newscat)
+}
+if(categoryNews.length){
+  
+}
+ 
+console.log(categoryNews.length)
   const newsContainer = document.getElementById('news-container');
   newsContainer.textContent='';
 
@@ -56,18 +62,18 @@ const newsDisplay = (categoryNews) => {
     <img src="${categoryNew.thumbnail_url}" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">${categoryNew.title}</h5>
-      <p class="card-text text-truncate">${categoryNew.details}</p>
+      <p class="card-text ">${categoryNew.details.slice(0,200)}</p>
     </div>
     <div class="d-flex">
-    <img src="${categoryNew.author.img}" class="w-25 rounded-circle ms-2 mb-2">
+    <img src="${categoryNew.author.img?categoryNew.author.img:'no image found'}" class="w-25 rounded-circle ms-2 mb-2">
     <div class=" ms-2 mt-4">
-    <h5>${categoryNew.author.name}</h5>
-    <p>${categoryNew.author.published_date}<p>
+    <h5>${categoryNew.author.name?categoryNew.author.name:"No found author name"}</h5>
+    <p>${categoryNew.author.published_date?categoryNew.author.published_date:'no date found'}<p>
     </div>
    
    <div class="mt-5 d-flex ">
    
-   <h3 class="ms-5">${categoryNew.rating.number}M</h3>
+   <h5 class="ms-3">View:${categoryNew.total_view?categoryNew.total_view:'No views found'}</h5>
    </div>
    </div>
    <buton class="btn btn-primary p-2 mt-4 fs-6 m-auto w-25 text-center" data-bs-toggle="modal" data-bs-target="#newsModal">Details <span class="ms-3"><i class="fa-solid fa-arrow-right"></i></span></button>

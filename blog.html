@@ -4,61 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        span{
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
-            font-size: 25px;
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
-    <header><h1 class="blog">Blog</h1>
-        <nav id="blog-menu">
-            <ul id="blog">
-                <li ><a href="#1st-blog">Difference Between const and let and var?</a></li>
-                <li><a href="#second-blog">Difference between arrow function and regular function?</a></li>
-                <li><a href="#third-blog">Difference between map,forEach,filter,find?</a></li>
-                <li><a href="#forth-blog"> Why we use template string?</a></li>
+    <header>
+        <section class="container"><h1 class="text-center text-warning mt-2 bg-secondary ms-5  p-5 ">Blog</h1></section>
+    </header>
+
+<main>
+    <section class="container">
+        <div class="accordion w-75 m-auto" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+               <h3> difference between var let and const</h3>
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body fs-4">
+                  <strong>Var:</strong>  Global scoped or function scoped. The scope of the var keyword is the global or function scope. It means variables defined outside the function can be accessed globally, and variables defined inside a particular function can be accessed within the function. The var is the oldest keyword to declare a variable in JavaScript. 
+                  <br><strong>Let:</strong>The scope of a let variable is only block scoped. It can’t be accessible outside the particular block ({block}).  The let keyword is an improved version of the var keyword. <br>
+                  <strong>Const:</strong> block scoped: When users declare a const variable, they need to initialize it, otherwise, it returns an error. The user cannot update the const variable once it is declared. The const keyword has all the properties that are the same as the let keyword, except the user cannot update it. 
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item fs-4">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                 <h3>Template String</h3>
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>Template String.</strong> Template literals are literals delimited with backtick (`) characters, allowing for multi-line strings, for string interpolation with embedded expressions, and for special constructs called tagged templates.
+
+                  Template literals are sometimes informally called template strings, because they are used most commonly for string interpolation (to create strings by doing substitution of placeholders). However, a tagged template literal may not result in a string; it can be used with a custom tag function to perform whatever operations you want on the different parts of the template literal.
+                  
+                  
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item fs-4">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <h3>Difference between arrow function and regular function</h3>
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>Arrow function:</strong>  the arrow functions are only callable and not constructible, i.e arrow functions can never be used as constructor functions.
+               <br><strong>Regular function:</strong>Regular functions created using function declarations or expressions are constructible and callable. Since regular functions are constructible, they can be called using the new keyword.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item fs-4">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+               <h3>Map,forEach,Filter,Find</h3>
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>Map:</strong>.map() when you want to transform elements in an array. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    <br><strong>forEach:</strong> the most compelling case for using .forEach() in favor of a for loop is that it’s easier. Even though it’s the same number of lines, there’s less setup.The .forEach() method is just a different way of doing this. The following two code examples effectively accomplish the same thing. 
+                    <br><strong>Filter:</strong>.filter() when you want to select a subset of multiple elements from an array.<br>
+                    <strong>Find:</strong>.find() When you want to select a single element from an array.
                 
-            </ul>
-        </nav></header>
-        <main >
-            <section class="blog-section">
-                <article  id="first-blog">
-                        <h1 class="blog">var,let and const</h1>
-                    <p><span>Var: </span>Global scoped or function scoped. The scope of the var keyword is the global or function scope. It means variables defined outside the function can be accessed globally, and variables defined inside a particular function can be accessed within the function. The var is the oldest keyword to declare a variable in.
-                        The variable ‘a’ is declared inside the function. If the user tries to access it outside the function, it will display the error. Users can declare the 2 variables with the same name using the var keyword. Also, the user can reassign the value into the var variable. 
-                    </p>
-                    <p><span>Let: </span> The scope of a let variable is only block scoped. It can’t be accessible outside the particular block ({block}). Let’s see the below example. The let keyword is an improved version of the var keyword. 
-                        The code returns an error because we are accessing the let variable outside the function block.</p>
-                        <p><span>Const: </span> When users declare a const variable, they need to initialize it, otherwise, it returns an error. The user cannot update the const variable once it is declared.  The const keyword has all the properties that are the same as the let keyword, except the user cannot update it.</p>
-                </article>
-                <article id="second blog">
-                    <h1 class="blog">arrow function and regular function</h1>
-                    <p><span>Arrow Function:</span>An arrow function is also known as the fat arrow function. It is a new feature introduced in ES6 that is a more concise syntax for writing function expressions. Both regular JavaScript functions and arrow functions work in a similar manner
-    
-                       </p>
-                     <p><span>Regular Function:</span>The behavior of this inside of an arrow, function differs considerably from the regular function’s this behavior as an arrow function does not have its own “this” keyword.</p>   
-                    
-                </article>
-                
-                <article id="third-blog">
-                    <h1 class="blog">Map,forEach,fin,filter</h1>
-                   <p><span>Map: </span>The map function always returns the new array with the same length as the original.</p>
-                   <p><span>forEach: </span>The arr.forEach method allows you to run a function for every element of the array. forEach doesn’t return anything.</p>
-                   <p><span>Filter: </span>This works like the find function, but instead of returning the first matched item, filter will return the array of matched items or an empty array if nothing matched.</p>
-                   <p><span>Find: </span>The find function returns the first item that matches the callback function, or undefined if there is nothing that matches.</p>
-                </article>
-                <article id="forth-blog">
-                    <h1 class="blog">Template String</h1>
-                    <p>
-                        Template literals are sometimes informally called template strings, because they are used most commonly for string interpolation (to create strings by doing substitution of placeholders). However, a tagged template literal may not result in a string; it can be used with a custom tag function to perform whatever operations you want on the different parts of the template literal.</p>
-                </article>
-            </section>
-        </main>
-    
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+</main>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
 </body>
 </html>
