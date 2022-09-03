@@ -8,13 +8,13 @@ const categoryLoad=()=>{
 const displayCategory=(categorys)=>{
 
     // category container
-    console.log(categorys) 
+    // console.log(categorys) 
     const categoryContainer=document.getElementById('category-container');
     categorys.forEach(category=>{
 
         const catogoryDiv=document.createElement('div');
         catogoryDiv.innerHTML=`
-        <button class="btn" onclick="newsLoad('${category.category_id}')">${category.category_name}<button>
+        <h3 class="category py-2" onclick="newsLoad('')">${category.category_name}</h3>
         `
         categoryContainer.appendChild(catogoryDiv)
         })
@@ -23,8 +23,9 @@ categoryLoad()
 
 // news section
 
-const newsLoad=(category_id)=>{
-    fetch(` https://openapi.programming-hero.com/api/news/category/0${category_id}`)
+const newsLoad=()=>{
+  const url=`  https://openapi.programming-hero.com/api/news/category/01`
+    fetch(url)
     .then(res=>res.json())
     .then(data=>newsDisplay(data.data))
 
@@ -37,7 +38,7 @@ const newsDisplay=(categoryNews)=>{
     const newsDiv=document.createElement('div')
     newsDiv.classList.add('col')
     newsDiv.innerHTML=`
-    <div class="card h-100">
+    <div class="card h-100 mb-5">
     <img src="${categoryNew.thumbnail_url}" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">${categoryNew.title}</h5>
@@ -51,10 +52,16 @@ const newsDisplay=(categoryNews)=>{
     </div>
    
    <div class="mt-5 d-flex ">
+   <span class="ms-5">
+   <i class="fa-solid fa-star-half-stroke"></i>
+   <i class="fa-regular fa-star"></i>
+   <i class="fa-regular fa-star"></i>
+   <i class="fa-regular fa-star"></i>
+   </span>
    <h3 class="ms-5">${categoryNew.rating.number}M</h3>
-   <buton class="btn btn-primary h-25  p-4 fs-6 ms-5" data-bs-toggle="modal" data-bs-target="#newsModal">Details <span class="ms-3"><i class="fa-solid fa-arrow-right"></i></span></button>
-  </div>
-  </div>
+   </div>
+   </div>
+   <buton class="btn btn-primary p-2 fs-6 m-auto w-25 text-center" data-bs-toggle="modal" data-bs-target="#newsModal">Details <span class="ms-3"><i class="fa-solid fa-arrow-right"></i></span></button>
   </div>
     
     `
@@ -64,4 +71,8 @@ const newsDisplay=(categoryNews)=>{
   })
 
 }
-// newsLoad()
+
+// news details
+
+
+newsLoad()
