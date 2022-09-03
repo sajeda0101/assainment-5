@@ -21,6 +21,7 @@ const displayCategory = (categorys) => {
         `
     categoryContainer.appendChild(catogoryDiv)
   })
+
 }
 categoryLoad()
 
@@ -37,26 +38,25 @@ const newsLoad = (id) =>{
 };
 const newsDisplay = (categoryNews) => {
   console.log(categoryNews)
-  const noFound=document.getElementById('no-found-message');
-const newArray=[];
-for(const newscat of categoryNews){
-
-  console.log(newscat)
-}
-if(categoryNews.length){
   
-}
- 
-console.log(categoryNews.length)
+  // no found message display
+  const noFound=document.getElementById('no-found-message ')
+  const array=categoryNews.length;
+  noFound.innerText=array;
+  const noFoundText=array+" Found News";
+  noFound.innerText=noFoundText;
+  console.log(noFound)
+
+// news container
   const newsContainer = document.getElementById('news-container');
   newsContainer.textContent='';
-
-  
 
   categoryNews.forEach(categoryNew => {
 
     const newsDiv = document.createElement('div')
     newsDiv.classList.add('col')
+    
+    // news display in html
     newsDiv.innerHTML = `
     <div class="card h-100 mb-5">
     <img src="${categoryNew.thumbnail_url}" class="card-img-top" alt="...">
@@ -65,31 +65,44 @@ console.log(categoryNews.length)
       <p class="card-text ">${categoryNew.details.slice(0,200)}</p>
     </div>
     <div class="d-flex">
-    <img src="${categoryNew.author.img?categoryNew.author.img:'no image found'}" class="w-25 rounded-circle ms-2 mb-2">
-    <div class=" ms-2 mt-4">
+    <img src="${categoryNew.author.img?categoryNew.author.img:'no image found'}" class="w-25 rounded-circle me-2 mb-2">
+    <div class=" me-2 mt-4">
     <h5>${categoryNew.author.name?categoryNew.author.name:"No found author name"}</h5>
     <p>${categoryNew.author.published_date?categoryNew.author.published_date:'no date found'}<p>
     </div>
    
+   <div class="mt-4 ms-1">
+   <h5 class="ms-4 mt-2">View:${categoryNew.total_view?categoryNew.total_view:'No views found'}</h5>
+   </div>
+   </div>
    <div class="mt-5 d-flex ">
-   
-   <h5 class="ms-3">View:${categoryNew.total_view?categoryNew.total_view:'No views found'}</h5>
+  <span class="ms-2"> <i class="fa-solid fa-star-half-stroke"></i>
+  <i class="fa-regular fa-star"></i>
+  <i class="fa-regular fa-star"></i>
+  <i class="fa-regular fa-star"></i>
+  <i class="fa-regular fa-star"></i>
+  </span>
+   <buton class="btn btn-primary p-2 mt-1 mb-3 fs-6 m-auto w-25 text-center" data-bs-toggle="modal" data-bs-target="#newsModal">Details <span class="ms-3"><i class="fa-solid fa-arrow-right"></i></span></button>
+
    </div>
-   </div>
-   <buton class="btn btn-primary p-2 mt-4 fs-6 m-auto w-25 text-center" data-bs-toggle="modal" data-bs-target="#newsModal">Details <span class="ms-3"><i class="fa-solid fa-arrow-right"></i></span></button>
   </div>
     
     `
     newsContainer.appendChild(newsDiv)
-
-
   })
 
+ 
 }
-// display no found message
+// toggle display
+const toggleSpinner=isLoading=>{
 
-
-// news details
-
+  const loaderSection=document.getElementById('loader');
+  if(isLoading){
+    loaderSection.classList.remove('d-none')
+  }
+  else{
+    loaderSection.classList.add('d-none')
+  }
+}
 
 // newsLoad()
