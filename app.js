@@ -31,21 +31,20 @@ const newsLoad = (id) =>{
   const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
   fetch(url)
     .then(res => res.json())
-    .then(data => {
-      newsDisplay(data.data)
-      
+    .then(data => {newsDisplay(data.data)
+      return
     })
 };
 const newsDisplay = (categoryNews) => {
-  console.log(categoryNews)
-  
+ 
+  console.log(categoryNews) 
   // no found message display
   const noFound=document.getElementById('no-found-message ')
   const array=categoryNews.length;
   noFound.innerText=array;
   const noFoundText=array+" Found News";
   noFound.innerText=noFoundText;
-  console.log(noFound)
+  
 
 // news container
   const newsContainer = document.getElementById('news-container');
@@ -53,6 +52,18 @@ const newsDisplay = (categoryNews) => {
 
   categoryNews.forEach(categoryNew => {
 
+    const modalTitle=document.getElementById('newsModalLabel');
+    modalTitle.innerHTML=`<h3>Category Id:${categoryNew.category_id}<h3>`;
+    const modalDetail=document.getElementById('modal');
+    modalDetail.innerHTML=`
+    <h5>Total View:${categoryNew.rating.number}<h5>
+    <h5>Budget:${categoryNew.rating.badge}<h5>
+    <p>Trending:${categoryNew.others_infois_trending}</p>
+        
+    
+    `
+
+    
     const newsDiv = document.createElement('div')
     newsDiv.classList.add('col')
     
@@ -88,7 +99,8 @@ const newsDisplay = (categoryNews) => {
   </div>
     
     `
-    newsContainer.appendChild(newsDiv)
+    newsContainer.appendChild(newsDiv);
+
   })
 
  
@@ -104,5 +116,7 @@ const toggleSpinner=isLoading=>{
     loaderSection.classList.add('d-none')
   }
 }
+// modal section
+
 
 // newsLoad()
