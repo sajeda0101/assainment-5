@@ -1,5 +1,6 @@
 // categorty section
 const categoryLoad = () => {
+ 
   fetch(`  https://openapi.programming-hero.com/api/news/categories`)
     .then(res => res.json())
     .then(data => displayCategory(data.data.news_category))
@@ -12,13 +13,11 @@ const displayCategory = (categorys) => {
   // console.log(categorys)
   const categoryContainer = document.getElementById('category-container');
 
-
   categorys.forEach(category => {
-
-  
     const catogoryDiv = document.createElement('div');
+  
     catogoryDiv.innerHTML = `
-        <h5 class="category py-3" id="news-cat" onclick="newsLoad(${category.category_id});">${category.category_name}</h5>
+        <h5 class="category py-3 " id="news-cat" onclick="newsLoad(${category.category_id});">${category.category_name}</h5>
         `
     categoryContainer.appendChild(catogoryDiv)
   })
@@ -26,11 +25,13 @@ const displayCategory = (categorys) => {
 }
 categoryLoad()
 
-// news section
 
+// news section
 const newsLoad = (id) =>{
+
   const url = `https://openapi.programming-hero.com/api/news/category/0${id}`;
-  fetch(url)
+  toggleSpinner(true)
+    fetch(url)
     .then(res => res.json())
     .then(data => {newsDisplay(data.data)
       .catch(error=>console.log(error))
@@ -47,32 +48,25 @@ const newsDisplay = (categoryNews) => {
   const noFoundText=array+" Found News";
   noFound.innerText=noFoundText;
   
-
 // news container
   const newsContainer = document.getElementById('news-container');
   newsContainer.textContent='';
-
   categoryNews.forEach(categoryNew => {
 
-    // modal
+    // modal section
     const modalTitle=document.getElementById('newsModalLabel');
     modalTitle.innerHTML=`<h3>Category Id:${categoryNew.category_id}<h3>`;
     const modalDetail=document.getElementById('modal');
     modalDetail.innerHTML=`
     <h5>Total View:${categoryNew.rating.number}<h5>
     <h5>Budget:${categoryNew.rating.badge}<h5>
-    <p>Trending:${categoryNew.others_infois_trending}</p>
-        
-    
+    <p>Trending:${categoryNew.others_info.is_trending}</p>
     `
-
-    
+    // news display card
     const newsDiv = document.createElement('div')
     newsDiv.classList.add('col')
-    
-    // news display card
     newsDiv.innerHTML = `
-    <div class="card h-100 mb-5">
+    <div class="card h-100 mb-2">
     <img src="${categoryNew.thumbnail_url}" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">${categoryNew.title}</h5>
@@ -105,15 +99,18 @@ const newsDisplay = (categoryNews) => {
     newsContainer.appendChild(newsDiv);
 
   })
-
+  // stop spinner
+toggleSpinner(false)
  
 }
+
 // toggle display
 const toggleSpinner=isLoading=>{
 
   const loaderSection=document.getElementById('loader');
   if(isLoading){
     loaderSection.classList.remove('d-none')
+
   }
   else{
     loaderSection.classList.add('d-none')
