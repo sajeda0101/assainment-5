@@ -3,6 +3,7 @@ const categoryLoad = () => {
   fetch(`  https://openapi.programming-hero.com/api/news/categories`)
     .then(res => res.json())
     .then(data => displayCategory(data.data.news_category))
+    .catch(error=>console.log(error))
 }
 // display category
 const displayCategory = (categorys) => {
@@ -32,6 +33,7 @@ const newsLoad = (id) =>{
   fetch(url)
     .then(res => res.json())
     .then(data => {newsDisplay(data.data)
+      .catch(error=>console.log(error))
       return
     })
 };
@@ -52,6 +54,7 @@ const newsDisplay = (categoryNews) => {
 
   categoryNews.forEach(categoryNew => {
 
+    // modal
     const modalTitle=document.getElementById('newsModalLabel');
     modalTitle.innerHTML=`<h3>Category Id:${categoryNew.category_id}<h3>`;
     const modalDetail=document.getElementById('modal');
@@ -67,13 +70,13 @@ const newsDisplay = (categoryNews) => {
     const newsDiv = document.createElement('div')
     newsDiv.classList.add('col')
     
-    // news display in html
+    // news display card
     newsDiv.innerHTML = `
     <div class="card h-100 mb-5">
     <img src="${categoryNew.thumbnail_url}" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">${categoryNew.title}</h5>
-      <p class="card-text ">${categoryNew.details.slice(0,200)}</p>
+      <p class="card-text ">${categoryNew.details.slice(0,150)}</p>
     </div>
     <div class="d-flex">
     <img src="${categoryNew.author.img?categoryNew.author.img:'no image found'}" class="w-25 rounded-circle me-2 mb-2">
@@ -116,7 +119,6 @@ const toggleSpinner=isLoading=>{
     loaderSection.classList.add('d-none')
   }
 }
-// modal section
 
 
 // newsLoad()
