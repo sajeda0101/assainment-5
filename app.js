@@ -4,6 +4,7 @@ const categoryLoad = () => {
   fetch(`  https://openapi.programming-hero.com/api/news/categories`)
     .then(res => res.json())
     .then(data => displayCategory(data.data.news_category))
+    // catch error
     .catch(error=>console.log(error))
 }
 // display category
@@ -34,7 +35,7 @@ const newsLoad = (id) =>{
     fetch(url)
     .then(res => res.json())
     .then(data => {newsDisplay(data.data)
-      .catch(error=>console.log(error))
+   
       return
     })
 };
